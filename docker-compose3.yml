@@ -1,0 +1,29 @@
+version: '3.9'
+
+services:
+  backend:
+    build: ./backend
+    container_name: binenso-backend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgresql://binenso:strongpassword@db:5432/binenso_db?schema=public
+      - JWT_SECRET=supersecretkey
+      - JWT_REFRESH_SECRET=refreshsupersecretkey
+    depends_on:
+      - db
+
+  db:
+    image: postgres:16
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: binenso
+      POSTGRES_PASSWORD: strongpassword
+      POSTGRES_DB: binenso_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

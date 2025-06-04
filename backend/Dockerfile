@@ -2,6 +2,9 @@ FROM node:18-alpine
 
 WORKDIR /usr/src/app
 
+# Alpine'a openssl 1.1 ve diğer gerekli paketleri yükle
+RUN apk add --no-cache openssl1.1-compat
+
 COPY package*.json ./
 
 RUN npm install
