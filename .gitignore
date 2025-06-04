@@ -1,0 +1,6 @@
+node_modules
+dist
+.env
+postgres_data
+caddy_data
+caddy_config
