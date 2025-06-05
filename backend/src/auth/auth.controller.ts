@@ -3,10 +3,10 @@ import { AuthService } from './auth.service';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(private readonly authService: AuthService) {}
 
   @Post('register')
-  async register(@Body() dto: { name: string; surname: string; phone: string; password: string }) {
+  async register(@Body() dto: { name: string; surname: string; phone: string; email: string; password: string }) {
     return this.authService.register(dto);
   }
 
