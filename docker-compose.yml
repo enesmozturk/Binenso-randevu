@@ -11,6 +11,8 @@ services:
       - DATABASE_URL=postgresql://binenso:strongpassword@db:5432/binenso_db?schema=public
       - JWT_SECRET=supersecretkey
       - JWT_REFRESH_SECRET=refreshsupersecretkey
+    command: >
+      sh -c "npx prisma migrate dev --name init && npm run start:prod"
     depends_on:
       - db
 
